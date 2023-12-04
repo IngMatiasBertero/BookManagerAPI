@@ -1,26 +1,28 @@
-﻿using FirstAPI.Modelos;
+﻿using FirstAPI.Data;
+using FirstAPI.Modelos;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace FirstAPI.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
 
-    public class ControlLibros
+    public class ControlLibros : Controller
     {
+        private readonly LibroDb _context;
 
-        public ControlLibros()
+        public ControlLibros(LibroDb context)
         {
-
+            _context = context;
         }
 
         //GET: api/libros
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Libro>>> GetLibros()
         {
-
+            return await _context.Libros.ToListAsync();
         }
-
 
         //GET: api/libros/2
         [HttpGet("{id")]

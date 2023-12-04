@@ -1,4 +1,8 @@
+using FirstAPI.Data;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddDbContext<LibroDb>(opt => opt.UseInMemoryDatabase("ListaLibro"));
 
 // Add services to the container.
 
